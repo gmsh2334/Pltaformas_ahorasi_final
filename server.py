@@ -12,15 +12,21 @@ def index():
     HS1="159 pts- Tanks"
     HS2= "200 pts - Brickbreaker"
     HS3="400 pts- Space Invaders"
-    most_played= "Brickbreaker"
+    games = session.query(Stats).all()
+    most_played = games.first()
+    for g in games:
+        if g.played > most_played.played:
+            most_played = g
     featured="Space Invaders"
-    render_template("index.html", mp=most_played, hs_1=HS1, hs_2=HS2, hs_3=HS3, feat=featured)
+    render_template("index.html", mp=most_played.name, hs_1=HS1, hs_2=HS2, hs_3=HS3, feat=featured)
+
 @app.route("/games")
 def games():
 	render_template("games.html")
 
 @app.route("/games/<game>")
 def game(game):
+
 	return "Game to be"
 	
 	

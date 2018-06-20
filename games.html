@@ -448,7 +448,23 @@
       </div>
     </footer>
 
+    <script>
+    
+        $(document).ready(function(){
+            function send_post_request(){
+               $.ajax({
+                   url: '/stats/most_played',
+                   type: 'POST',
+                   contentType: 'application/json',
+                   data: JSON.stringify({
+                       "id":  $(location).attr('pathname');
+                   }),
+                   dataType: 'json'
+               });
+           }
+        });
 
+        </script>
 
   </body>
 
